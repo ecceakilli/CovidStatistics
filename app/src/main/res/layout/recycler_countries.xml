@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="244dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_margin="5dp">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="right"
+            android:paddingRight="200dp">
+
+
+            <TextView
+                android:id="@+id/countriesNamedtl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/countriesCasesdtl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="content" />
+
+            <TextView
+                android:id="@+id/countriesDeathsdtl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="content" />
+
+            <TextView
+                android:id="@+id/countriesRecovereddtl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="content" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="left">
+
+
+            <TextView
+                android:id="@+id/countriesName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="deneme"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/countriesCases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Cases"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/countriesDeaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Deaths"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/countriesRecovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Recovered"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:src="@color/design_default_color_primary"
+            android:layout_margin="5dp"
+
+
+
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
