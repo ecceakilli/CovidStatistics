@@ -15,6 +15,9 @@ import com.eceakilli.covidstatistics.adapter.WorldAdapter;
 import com.eceakilli.covidstatistics.databinding.FragmentWorldBinding;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +30,7 @@ import retrofit2.Response;
 
 public class WorldFragment extends Fragment {
 
-    private ArrayList<String> worldFragmentArrayList;
+    private ArrayList<Map.Entry<String, Double>> entries;
     private FragmentWorldBinding worldBinding;
     WorldAdapter worldAdapter;
 
@@ -58,42 +61,25 @@ public class WorldFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        worldFragmentArrayList=new ArrayList<>();
-
-
-        worldFragmentArrayList.add("adı");
-        worldFragmentArrayList.add("adı");
-        worldFragmentArrayList.add("adı");
-        worldFragmentArrayList.add("adı");
-
-
-
+        entries = new ArrayList<>();
         call = AppClassApplication.getInstance().getRestInterface().getWorldData();
         call.enqueue(new Callback<Map<String, Double>>() {
             @Override
             public void onResponse(Call<Map<String, Double>> call, Response<Map<String, Double>> response) {
                 Log.e("basarılı",""+response.body().size());
 
+                Set<Map.Entry<String, Double>> entrySet = response.body().entrySet();
+                // Creating an ArrayList of Entry objects
+                entries = new ArrayList<>(entrySet);
+                worldAdapter.changeData(entries);
 
-
-                /*1
-               worldFragmentArrayList=new ArrayList<String>(response.body().keySet());
-               worldAdapter=new WorldAdapter(worldFragmentArrayList);
-
-                 /*
-                 Set setkey= response.body().keySet();
-                  worldFragmentArrayList = new ArrayList<>(setkey);
-                  worldAdapter=new WorldAdapter(worldFragmentArrayList);*/
-
-
-
-            //adapter at --map ile çevir adaptri
-                //map to arraylist convert!!! arastr
             }
 
             @Override
             public void onFailure(Call<Map<String, Double>> call, Throwable t) {
                 Log.e("basarısız",""+t.getMessage());
+
+
             }
         });
 
@@ -112,7 +98,7 @@ public class WorldFragment extends Fragment {
         View view = worldBinding.getRoot();
 
         worldBinding.rcyclerWorld.setLayoutManager(new LinearLayoutManager(getActivity()));
-        worldAdapter=new WorldAdapter(worldFragmentArrayList);
+        worldAdapter=new WorldAdapter(entries);
         worldBinding.rcyclerWorld.setAdapter(worldAdapter);
 
 

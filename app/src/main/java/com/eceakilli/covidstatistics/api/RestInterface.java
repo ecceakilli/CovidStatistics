@@ -1,5 +1,8 @@
 package com.eceakilli.covidstatistics.api;
 
+import com.eceakilli.covidstatistics.data.Country;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -12,5 +15,5 @@ public interface RestInterface {
     Call<Map<String, Double>> getWorldData();
 
     @GET("countries?sort=cases")
-    Call<Map<String, Double>> getCountriesData();
+    Call<ArrayList<Country>> getCountriesData();
 }

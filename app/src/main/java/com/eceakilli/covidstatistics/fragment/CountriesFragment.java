@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.eceakilli.covidstatistics.AppClassApplication;
 import com.eceakilli.covidstatistics.R;
 import com.eceakilli.covidstatistics.adapter.CountriesAdapter;
+import com.eceakilli.covidstatistics.data.Country;
 import com.eceakilli.covidstatistics.databinding.FragmentCountriesBinding;
 import com.eceakilli.covidstatistics.databinding.FragmentWorldBinding;
 
@@ -25,9 +27,9 @@ import retrofit2.Response;
 public class CountriesFragment extends Fragment {
 
     private FragmentCountriesBinding countriesBinding;
-    private ArrayList<String> countriesFragmentArraylist;
+    private ArrayList<Country> countriesFragmentArraylist;
     CountriesAdapter countriesAdapter;
-    private Call<Map<String, Double>> call;
+    private Call<ArrayList<Country>> call;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -52,22 +54,23 @@ public class CountriesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         countriesFragmentArraylist=new ArrayList<>();
-        countriesFragmentArraylist.add("aaa");
-        countriesFragmentArraylist.add("aaa");
-        countriesFragmentArraylist.add("aaa");
-        countriesFragmentArraylist.add("aaa");
-        countriesFragmentArraylist.add("aaa");
+
 
         call = AppClassApplication.getInstance().getRestInterface().getCountriesData();
 
-        call.enqueue(new Callback<Map<String, Double>>() {
+        call.enqueue(new Callback<ArrayList<Country>>() {
             @Override
-            public void onResponse(Call<Map<String, Double>> call, Response<Map<String, Double>> response) {
+            public void onResponse(Call<ArrayList<Country>> call, Response<ArrayList<Country>> response) {
+                Log.e("basarılı",""+response.body().size());
+
+                countriesFragmentArraylist = response.body();
+                countriesAdapter.changeData(countriesFragmentArraylist);
+
 
             }
 
             @Override
-            public void onFailure(Call<Map<String, Double>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Country>> call, Throwable t) {
 
             }
         });
